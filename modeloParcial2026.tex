@@ -1,8 +1,16 @@
 \documentclass[a4paper,12pt]{article}
-\usepackage[pdftex]{graphicx}
+\usepackage{graphicx}
+\usepackage[
+  a4paper,
+  left=30mm,
+  right=20mm,
+  top=30mm,
+  bottom=20mm,
+  includehead,
+  includefoot
+]{geometry}
 \usepackage[table]{xcolor} % Defines colors (incl. gray) and supports colored tables
-\usepackage[hidelinks]{hyperref}
-\usepackage{anysize}
+\usepackage{microtype}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[portuguese,brazil]{babel}
@@ -10,7 +18,8 @@
 \usepackage{natbib}
 \usepackage{amssymb}
 \usepackage{amsmath}
-\usepackage{subfig} % Figuras lado a lado.
+\usepackage{subcaption}
+%\usepackage{subfig} % Figuras lado a lado.
 \captionsetup[subfloat]{%
     position=bottom,
     justification=centering
@@ -19,14 +28,32 @@
 \renewcommand{\familydefault}{\sfdefault} % Define fonte padrão como sans-serif
 \usepackage{tabularx} % tabelas mais flexíveis
 \usepackage{titlesec} % possibilita alterar o formato das seções
-\usepackage{parskip} % controle de espaçamento de parágrafos
-\usepackage{caption} %Possibilita editar captions.
+%\usepackage{parskip} % controle de espaçamento de parágrafos
+\usepackage{enumitem}
+\setlist{nosep}
+%\usepackage{caption} %Possibilita editar captions.
 \usepackage{float}
+\usepackage{newfloat}
+\DeclareFloatingEnvironment[
+    fileext=loq,
+    listname=Lista de Quadros,
+    name=Quadro
+]{quadro}
 \usepackage{fontawesome}
+
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!70!black,
+    citecolor=blue!70!black,
+    urlcolor=blue!70!black
+}
 
 \captionsetup{%
     %format=hang,
     justification=raggedright,
+    width=0.95\textwidth,
     singlelinecheck=false,
     figureposition=top,
     font=small
@@ -36,8 +63,8 @@
 \titleformat{\section}
  {\normalfont\Large\bfseries}{\thesection.}{0.5em}{}[{\titlerule[0.6pt]}]
 
-%%%%%%%%%%%%% Tabela
-\captionsetup[table]{name=Quadro} %Altera o nome de Tabela para Quadro.
+%%%%%%%%%%%%% Tabelas e Quadros
+\captionsetup[table]{name=Tabela} %Altera o nome de Tabela para Quadro.
 
 
 %%%%%%%%%%%%% Apelidos para bibliografias
@@ -55,14 +82,10 @@
 \renewcommand{\baselinestretch}{1.5} % Espaçamento de 1.5 entre linhas
 \setlength{\parskip}{10pt} % espaço entre parágrafos (uma linha em branco).
 
-%%%%%%%%%%%%%% Margens
-%\marginsize{left}{right}{top}{bottom}
-\marginsize{30mm}{20mm}{30mm}{20mm}
-
 \pagestyle{fancy}
 \fancyhf{} % clear all fields
 \setlength{\headheight}{45pt} % Avoid fancyhdr warning (adjust if needed)
-\addtolength{\topmargin}{-50pt} % Compensate for increased header height
+%\addtolength{\topmargin}{-50pt} % Compensate for increased header height
 \fancyhead[R]{
 	\textcolor{gray}{\small Universidade Federal do Espírito Santo}\\ 
 	\textcolor{gray}{\small Programa Institucional de Iniciação Científica} \\
@@ -78,7 +101,7 @@
 
 \begin{tabularx}{\textwidth}{|>{\columncolor[gray]{0.9}} l|X|}
 \hline
-{\bf Edital:} & \textbf{Edital Piic 20-- / 20--  } \\
+{\bf Edital:} & \textbf{Edital Piic 20\_\_ / 20\_\_  } \\
 \hline
 {\bf Área do Conhecimento (CNPq):} &   \\
 \hline
@@ -138,21 +161,36 @@ Nesta seção devem ser descritos, de maneira sucinta, \textbf{em até 30 linhas
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Resultados e Discussão}
-Esta seção deve explicitar, \textbf{em até 30 linhas}, os principais resultados obtidos no decorrer da pesquisa executada pelo discente no primeiro semestre de vinculação ao Piic/Ufes. Em todo o relatório, ilustrações (figuras, gráficos, fotos, fluxogramas, quadros e etc.) e tabelas podem também ser incluídas e devem ser utilizadas a fim de de organizar os dados, realizar comparações, sintetizar informações e dar suporte às análises. Deve-se destacar que tais ilustrações ou tabelas não são computadas como linhas do texto. As ilustrações e tabelas devem ser inseridas imediatamente após o trecho ao qual fazem referência. Estes elementos devem estar centralizados na página. Na parte inferior, deve constar a indicação da fonte consultada (elemento obrigatório, mesmo que seja “produção do próprio autor”), legenda, notas e/ou outras informações necessárias à compreensão (se houver), como mostra a Figura \ref{fig:exemplo1}. 
+Esta seção deve explicitar, \textbf{em até 30 linhas}, os principais resultados obtidos no decorrer da pesquisa executada pelo discente no primeiro semestre de vinculação ao Piic/Ufes. Em todo o relatório, ilustrações (figuras, gráficos, fotos, fluxogramas, quadros e etc.) e tabelas podem também ser incluídas e devem ser utilizadas a fim de de organizar os dados, realizar comparações, sintetizar informações e dar suporte às análises. Deve-se destacar que tais ilustrações ou tabelas não são computadas como linhas do texto. As ilustrações e tabelas devem ser inseridas imediatamente após o trecho ao qual fazem referência. Estes elementos devem estar centralizados na página. Na parte inferior, deve constar a indicação da fonte consultada (elemento obrigatório, mesmo que seja “produção do próprio autor”), legenda, notas e/ou outras informações necessárias à compreensão (se houver), como mostram a Figura \ref{fig:exemplo1} e a Figura \ref{fig:exemplo2}.
 
 
 \begin{figure}[H]
     \centering
-    \caption{(a) Fotografia do modelo de edificação utilizado no experimento e (b) representação esquemática do comportamento do escoamento sobre a edificação. Fonte: [CITAR AQUI].}
+    \caption{(a) Fotografia do modelo de edificação utilizado no experimento e (b) representação esquemática do comportamento do escoamento sobre a edificação. }
     \label{fig:exemplo1}
     \subfloat[]{
         \includegraphics[width=0.48\textwidth]{Picture1.png}
     }
-    \hfill
+    %\hfill
     \subfloat[]{
         \includegraphics[width=0.48\textwidth]{Picture2.png}
     }
+    \caption*{
+        Fonte: Toledo e Pereira (2004)..\\
+        \textit{Descrição da Figura \ref{fig:exemplo1}}: fotografia de um modelo reduzido de edificação e representação esquemática do comportamento do escoamento sobre a edificação.}
 \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{Consumo final de energia por fonte no Brasil em 2011.}
+    \label{fig:exemplo2}
+    \includegraphics[width=0.70\textwidth]{Picture3.png}
+    \caption*{
+        Fonte: Empresa de Pesquisa Energética (2012). \\ 
+        Notas: $^1$ Inclui biodiesel. $^2$ Inclui apenas gasolina A (automotiva). $^3$ Inclui gás de refinaria, coque de carvão mineral e carvão vegetal, dentre outros.
+    }
+\end{figure}
+
 
 
 Para inserir números de figuras, inclua uma etiqueta (\textit{label}) dentro do ambiente de figura (\verb|\label{fig:exemplo1}|) e refira ao mesmo usando \verb|\ref{fig:exemplo1}|. Links são criados automaticamente. O uso de ``fig:'' na etiqueta da figura é prática comum e recomendada, mas qualquer nome de etiqueta funciona.
@@ -160,7 +198,6 @@ Para inserir números de figuras, inclua uma etiqueta (\textit{label}) dentro do
 No caso de figuras e tabelas, sugere-se a inserção de um texto alternativo, que é uma breve descrição textual que permite a pessoas com deficiência visual, que utilizam softwares leitores de tela, compreender o conteúdo visual do relatório.
 
 \textbf{Orientações para a redação do texto alternativo:}
-
 \begin{itemize}
     \item \textbf{Seja objetivo:} Comece pela informação mais importante. Evite expressões como ``Imagem de...'' ou ``Foto de...'', pois o leitor de tela já identifica o elemento como gráfico.
     
@@ -171,116 +208,134 @@ No caso de figuras e tabelas, sugere-se a inserção de um texto alternativo, qu
     \item \textbf{Tabelas:} Certifique-se de que a descrição resuma a principal conclusão que os dados da tabela apresentam.
 \end{itemize}
 
+Quanto ao formato e à apresentação de tabelas e quadros, como exemplificado na Tabela~\ref{tab:exemplo_tab} e no Quadro~\ref{quadro:exemplo}, devem ser observadas as seguintes orientações:
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Atividades Realizadas e Produtos do Projeto}
-Ao longo do período de vigência deste projeto de Iniciação Científica, todas as atividades planejadas foram executadas com sucesso, culminando em uma análise robusta e na produção de resultados científicos relevantes. As tarefas executadas podem ser resumidas da seguinte forma:
-
-Primeiramente, foi realizado um aprofundamento teórico sobre os temas de matéria escura, dinâmica galáctica e métodos estatísticos, consolidando a base de conhecimento necessária para a pesquisa. Em paralelo, foram desenvolvidas as habilidades de programação em \texttt{Python}, com foco nas bibliotecas científicas essenciais para a análise de dados astrofísicos.
-
-A etapa seguinte consistiu na familiarização com o catálogo de dados \texttt{SPARC}. Foi desenvolvido um \textit{pipeline} de software para ler, processar e visualizar as curvas de rotação. Inicialmente, foram implementados ajustes de perfis de matéria escura utilizando métodos de otimização baseados em $\chi^2$ e busca em grade, cujos resultados para diversas galáxias foram apresentados na XLVII Reunião Anual da Sociedade Astronômica Brasileira.
-
-Posteriormente, a metodologia foi refinada para uma abordagem de inferência Bayesiana completa, utilizando MCMC. Essa análise mais sofisticada, aplicada a uma amostra de galáxias HSB e LSB, resultou em um trabalho que foi aceito para apresentação em formato de pôster na conferência internacional \textit{Galaxy Memoirs 2025}, realizada em Armação Buzius, Rio de Janeiro. A análise foi executada utilizando os recursos computacionais do cluster \textit{Sci-Com} do Núcleo Capixaba de Computação Científica (NC3), que foi fundamental para a viabilidade do processamento intensivo exigido pelo MCMC.
-
-\begin{table}[H]
-\caption{Lista de atividades previstas e realizadas do Subprojeto.}
-\begin{tabularx}{\textwidth}{|X|}
-\hline
-1 -  Programação em Python \& \textit{Wolfram Language}: constante desenvolvimento. \\
-\hline
-2 - Potencial gravitacional em gravitação Newtoniana para modelagem de galáxias. \\
-\hline
-3 - Modelos de matéria escura e gravitação.  \\
-\hline
-4 - Familiarização com o \textit{sample} de dados SPARC.  \\
-\hline
-5 - Otimização de $\chi^2$. \\
-\hline
-6 - Determinação de parâmetros de modelos, com regiões de confiança, a partir de análise Bayesiana. \\
-\hline
-7 - Atividades complementares: Limpeza dos códigos e preparação para publicação no Github; Apresentação em eventos. \\
-\hline
-8 - Relatório parcial. \\
-\hline
-9 - Relatório final. \\
-\hline
-\end{tabularx}
-{\small Fonte: Produção do próprio autor.}
-\end{table}
-
-\begin{table}[H]
-\caption{Cronograma de atividades do Subprojeto, indicando a conclusão das tarefas.}
-\begin{tabularx}{\textwidth}{|l|c|c|c|c|c|c|c|c|c|c|c|c|}
-\hline
-\rowcolor[gray]{.9}
-Atividade &  set & out & nov & dez & jan & fev & mar & abr & mai & jun & jul & ago\\
-\hline
-1 & \faSmileO  & \faSmileO  & \faSmileO  & \faSmileO   & \faSmileO & \faSmileO  & \faSmileO  & \faSmileO  & \faSmileO  & \faSmileO  & \faSmileO  & \faSmileO \\
-\hline
-2 & \faSmileO & \faSmileO  & \faSmileO  &   &   &   &   &   &   &   &   &  \\
-\hline
-3 &   & \faSmileO  & \faSmileO  & \faSmileO  & \faSmileO &   &   &   &   &   &   &  \\
-\hline
-4 &   & \faSmileO  & \faSmileO  & \faSmileO  &   &  &   &  &  &  &   &  \\
-\hline
-5 &   &   &  \faSmileO &  \faSmileO  & \faSmileO & \faSmileO  & \faSmileO  &   &   &   &   &  \\
-\hline
-6 &   &   &   &    &   &   & \faSmileO  &  \faSmileO & \faSmileO  & \faSmileO  & \faSmileO  &  \\
-\hline
-7 &   &   &   &   &   &   &   &  \faSmileO  & \faSmileO  & \faSmileO  & \faSmileO  & \faSmileO \\
-\hline
-8 &   &   &   &   &   & \faSmileO  &   &   &   &   &   &   \\
-\hline
-9 &   &   &   &   &   &   &   &   &   &   &   & \faSmileO  \\
-\hline
-\end{tabularx}
-{\small Fonte: Produção do próprio autor.}
-\end{table}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Agradecimentos}
-Agradeço ao Programa Institucional de Iniciação Científica (PIIC) da Universidade Federal do Espírito Santo (UFES) e ao Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq) pela bolsa e pelo fomento a esta pesquisa. Agradeço também ao Núcleo Capixaba de Computação Científica (NC3) por disponibilizar a infraestrutura computacional do cluster \textit{Sci-Com}, cujos recursos foram indispensáveis para a execução das amostragens MCMC.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Atividades Complementares}
-Durante a execução deste projeto, os resultados parciais e finais foram divulgados em importantes fóruns científicos. As principais atividades complementares foram:
 \begin{itemize}
-    \item \textbf{Apresentação de Pôster:} Participação na XLVII Reunião Anual da Sociedade Astronômica Brasileira (SAB), onde foram apresentados os resultados preliminares da análise de galáxias do catálogo SPARC.
-    \item \textbf{Apresentação em Conferência Internacional:} Apresentação de um pôster na conferência \textit{Galaxy Memoirs 2025}, detalhando a análise Bayesiana comparativa entre os perfis de matéria escura em galáxias HSB e LSB.
-    \item \textbf{Disponibilização de Código:} O código-fonte em \texttt{Python} desenvolvido para a análise das curvas de rotação está sendo preparado e documentado para publicação em um repositório público no \textit{GitHub}, em alinhamento com as práticas de ciência aberta.
+    \item \textbf{Tabelas:} a moldura não deve ser fechada com traços verticais à esquerda e à direita.
+    
+    \item Deve-se evitar o uso de traços verticais para separar colunas e de traços horizontais para separar excessivamente as linhas de uma tabela.
+    
+    \item \textbf{Quadros:} por serem elementos fechados, devem conter traços horizontais e verticais para separar linhas e colunas, além de traços horizontais e verticais para delimitar sua moldura.
 \end{itemize}
 
+\begin{table}[H]
+\centering
+\caption{Exemplo de formatação de uma tabela para a apresentação de resultados}
+\label{tab:exemplo_tab}
+
+\begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+\hline
+\textbf{Grupo de idade (em meses)} &
+\textbf{Número de indivíduos no grupo} &
+\textbf{Indivíduos viáveis [\%]} \\
+\hline
+0--10 & 20 & 9,0 \\
+10--15 & 20 & 10,0 \\
+15--20 & 25 & 4,0 \\
+Acima de 20 & 15 & 3,4 \\
+\hline
+\end{tabularx}
+\caption*{
+    Fonte: Produção do(a) próprio(a) autor(a).\\
+    \textit{Descrição da Tabela~\ref{tab:exemplo_tab}:} tabela com bordas horizontais simples no topo e na base, com dados ilustrativos para demonstrar as normas de apresentação de dados.
+}
+\end{table}
+
+\begin{quadro}[H]
+\centering
+\caption{Dimensionamento dos elementos de um conversor \textit{boost}}
+\label{quadro:exemplo}
+\begin{tabular}{|l|l|}
+\hline
+\rowcolor[gray]{0.9}
+\textbf{Elemento ou Grandeza} & \textbf{Valor ou Modelo} \\
+\hline
+Tensão de entrada & 48 V \\
+\hline
+Tensão de saída & 200 V \\
+\hline
+Potência de saída & 200 W \\
+\hline
+Frequência de comutação & 50 kHz \\
+\hline
+Indutor de entrada & 880 $\mu$H \\
+\hline
+Capacitor de saída & 22 $\mu$F \\
+\hline
+Diodo & FES8HT \\
+\hline
+Interruptor & IRFP360 \\
+\hline
+\end{tabular}
+\caption*{
+    Fonte: Menegáz (1997).\\
+    \textit{Descrição do Quadro~\ref{quadro:exemplo}:} o quadro apresenta duas colunas e nove linhas com bordas pretas visíveis em todas as divisões, com dados ilustrativos para demonstrar as normas de apresentação de dados.
+}
+\end{quadro}
+
+Outros elementos textuais que podem fazer parte do Relatório Parcial de Pesquisa são as equações e outras relações matemáticas.  Elas podem aparecer dentro no texto, como $\mathbf F = m \mathbf a$, ou de forma destacada, como
+\begin{equation} \label{eq:Einstein}
+    G_{\mu \nu} = \frac{8 \pi G}{c^4} \, T_{\mu \nu} \, ,
+\end{equation}
+ou
+\begin{equation} \label{eq:Schroedinger}
+    i \hbar \frac{d}{dt} | \psi(t) \rangle = \hat H | \psi(t)\rangle \, .
+\end{equation}
+
+Em quaisquer dos casos, a pontuação segue sendo usada usando as regras normais do português: as equações fazem parte do texto. Recomenda-se que todas as equações destacadas sejam numeradas, mesmo as não citadas no texto. Essa simples prática facilita a discussão posterior do texto. Ao citar equações, diferentemente de figuras e tabelas, sempre usar parênteses em torno dos números. Isso pode ser feito, por exemplo, via \verb|(\ref{eq:Einstein})| ou \verb|\eqref{eq:Einstein}|. Acima, a eq.~\eqref{eq:Einstein} trata das equações de campo de Einstein e a eq.~\eqref{eq:Schroedinger} é a equação de Schroedinger na notação de \textit{bra} e \textit{ket}.
+
+
+\noindent
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Referências Bibliográficas}
-\flushleft{BINNEY, James; TREMAINE, Scott. \textbf{Galactic dynamics}. Princeton university press, 2011.}
+\section{Atividades Realizadas e Metas Futuras}
 
-\flushleft{BOSMA, A. The distribution and kinematics of neutral hydrogen in spiral galaxies of various morphological types. 1978. \textbf{Thesis (PhD)}. University of Groningen, 1978.}
+Nesta seção deve-se resgatar as atividades previstas do Subprojeto de Pesquisa e explicitar aquelas que foram totalmente realizadas (\checkmark), parcialmente realizadas (\faAdjust) ou não foram realizadas ($\times$), conforme o Quadro~\ref{qua:cronograma_subprojeto}:
 
-\flushleft{BURKERT, Andreas. The structure of dark matter halos in dwarf galaxies. \textbf{The Astrophysical Journal}, v. 447, n. 1, p. L25, 1995.}
+\begin{quadro}[H]
+\centering
+\caption{Cronograma de atividades previstas e realizadas do Subprojeto (set./20\_\_ a ago./20\_\_)}
+\label{qua:cronograma_subprojeto}
 
-\flushleft{DE BLOK, W. J. G. The Core‐Cusp Problem. \textbf{Advances in Astronomy}, v. 2010, n. 1, p. 789293, 2010.}
+\renewcommand{\arraystretch}{1.6}
+\setlength{\tabcolsep}{3pt}
 
-\flushleft{DEL POPOLO, A. \textit{et al}. A unified solution to the small scale problems of the $\Lambda$CDM model. \textbf{Journal of Cosmology and Astroparticle Physics}, v. 2014, n. 04, p. 021, 2014.}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|*{12}{>{\centering\arraybackslash}p{0.045\textwidth}|}}
+\hline
+\rowcolor[gray]{0.9}
+\textbf{Atividade} & \textbf{set.} & \textbf{out.} & \textbf{nov.} & \textbf{dez.} & \textbf{jan.} & \textbf{fev.} & \textbf{mar.} & \textbf{abr.} & \textbf{mai.} & \textbf{jun.} & \textbf{jul.} & \textbf{ago.} \\
+\hline
+a) Xxxx xxx xxxxxx &  &  &  &  &  &  &  &  &  &  &  &  \\
+\hline
+b) Yyyy yyy yyy yy yyy &  &  &  &  &  &  &  &  &  &  &  &  \\
+\hline
+c) Zzzzz z zzzz &  &  &  &  &  &  &  &  &  &  &  &  \\
+\hline
+d) Wwwww ww www wwww www &  &  &  &  &  &  &  &  &  &  &  &  \\
+\hline
+\end{tabularx}
 
-\flushleft{HERNÁNDEZ-ARBOLEDA, Alejandro; RODRIGUES, Davi C. Rotação de galáxias e matéria escura. \textbf{Cadernos de Astronomia}, v. 2, n. 1, p. 6-33, 2021.}
+\caption*{
+    Fonte: Produção do próprio autor.\\
+    Nota: atividade totalmente realizada (\checkmark), atividade parcialmente realizada (\faAdjust) e atividade não realizada ($\times$).
+}
+\end{quadro}
 
-\flushleft{KEETON, Charles. \textbf{Principles of astrophysics}. New York: Springer, 2014.}
+\textbf{A execução parcial ou a não realização de uma determinada atividade deve ser justificada.} Além disso, as metas a serem alcançadas, nos 6 (seis) meses seguintes devem também ser sucintamente descritas.
 
-\flushleft{LI, Pengfei \textit{et al}. Fitting the radial acceleration relation to individual SPARC galaxies. \textbf{Astronomy \& Astrophysics}, v. 615, p. A3, 2018.}
+Toda a seção deve ter, no máximo, 20 linhas, sem contar com o quadro que contém o cronograma de atividades.
 
-\flushleft{LELLI, Federico; MCGAUGH, Stacy S.; SCHOMBERT, James M. SPARC: Mass models for 175 disk galaxies with Spitzer photometry and accurate rotation curves. \textbf{The Astronomical Journal}, v. 152, n. 6, p. 157, 2016.}
 
-\flushleft{NAVARRO, Julio F.; FRENK, Carlos S.; WHITE, Simon DM. A universal density profile from hierarchical clustering. \textbf{The Astrophysical Journal}, v. 490, n. 2, p. 493, 1997.}
 
-\flushleft{RODRIGUES, Davi C. \textit{et al}. Evidence against cuspy dark matter haloes in large galaxies. \textbf{Monthly Notices of the Royal Astronomical Society}, v. 470, n. 2, p. 2410-2426, 2017.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Sobre as referências}
+Esta seção deve descrever as fontes consultadas durante esta primeira etapa de desenvolvimento do Subprojeto de Iniciação Científica, seguindo a norma técnica pertinente, a saber a NBR 6023:2025. Deve conter apenas as obras citadas no texto, ou seja, “não liste se não citar” e “não cite se não listar”. A lista das referências bibliográficas deve estar em ordem alfabética. A \href{https://biblioteca.ufes.br/normalizacao}{Biblioteca Central da Ufes (BC-Ufes)} orienta a aplicação da nova ABNT NBR 6023:2025.
 
-\flushleft{RUBIN, V. C.; FORD, W. K.; THONNARD, N. Extended rotation curves of high-luminosity spiral galaxies. IV - Systematic dynamic properties, SA to SC. \textbf{The Astrophysical Journal}, v. 225, p. L107-L111, 1978.7.}
+Ao usar \LaTeX, sugere-se o uso de um arquivo `bib' que contenha todas as referências necessárias (pode conter muitas outras mais, mas só as citadas irão aparecer no PDF final). Assim no arquivo tex basta chamar cada referência usando \verb|\cite{etiquitaDaReferencia}| ou \verb|\citep{etiquitaDaReferencia}|. Exemplo: \citet{Weinberg:2009wa} tratou de inflação no contexto de teorias de campos assintoticamente seguras.  Há várias formas de estimar a densidade de matéria escura na vizinhança do Sol \citep{Salucci:2010qr}.
 
-\flushleft{WALTER, Fabian \textit{et al}. THINGS: The H i nearby galaxy survey. \textbf{The Astronomical Journal}, v. 136, n. 6, p. 2563, 2008.}
 
-\flushleft{ZWICKY, F. The redshift of extragalactic nebulae. \textbf{Helvetica Physica Acta}, v. 6, p. 110-127, 1933.}
+\bibliographystyle{hapalike2-NOand}
+\bibliography{referencias}{}
 
-\flushleft{ZWICKY, F. On the masses of nebulae and of clusters of nebulae. \textbf{The Astrophysical Journal}, v. 86, p. 217, 1937.}
+
 
 \end{document}
