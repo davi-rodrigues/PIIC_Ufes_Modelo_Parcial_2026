@@ -1,3 +1,6 @@
+
+% Modelo em LaTeX para relatório parcial Piic / Ufes 2026
+
 \documentclass[a4paper,12pt]{article}
 \usepackage{graphicx}
 \usepackage[
@@ -9,7 +12,7 @@
   includehead,
   includefoot
 ]{geometry}
-\usepackage[table]{xcolor} % Defines colors (incl. gray) and supports colored tables
+\usepackage[table]{xcolor} 
 \usepackage{microtype}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -19,19 +22,16 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{subcaption}
-%\usepackage{subfig} % Figuras lado a lado.
 \captionsetup[subfloat]{%
     position=bottom,
     justification=centering
 }
 \usepackage[scaled]{helvet} % Fonte semelhante à Arial (Helvetica)
 \renewcommand{\familydefault}{\sfdefault} % Define fonte padrão como sans-serif
-\usepackage{tabularx} % tabelas mais flexíveis
-\usepackage{titlesec} % possibilita alterar o formato das seções
-%\usepackage{parskip} % controle de espaçamento de parágrafos
+\usepackage{tabularx} 
+\usepackage{titlesec} 
 \usepackage{enumitem}
 \setlist{nosep}
-%\usepackage{caption} %Possibilita editar captions.
 \usepackage{float}
 \usepackage{newfloat}
 \DeclareFloatingEnvironment[
@@ -40,8 +40,6 @@
     name=Quadro
 ]{quadro}
 \usepackage{fontawesome}
-
-
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
@@ -49,25 +47,32 @@
     citecolor=blue!70!black,
     urlcolor=blue!70!black
 }
-
-\captionsetup{%
-    %format=hang,
+\captionsetup{
     justification=raggedright,
     width=0.95\textwidth,
     singlelinecheck=false,
     figureposition=top,
     font=small
-    }
-
-%%%%%%%%%%%%%% Formatação dos estilos das seções
+}
 \titleformat{\section}
  {\normalfont\Large\bfseries}{\thesection.}{0.5em}{}[{\titlerule[0.6pt]}]
+\captionsetup[table]{name=Tabela} 
+\renewcommand{\baselinestretch}{1.5} % Espaçamento de 1.5 entre linhas
+\setlength{\parskip}{10pt} % espaço entre parágrafos (uma linha em branco).
+\pagestyle{fancy}
+\fancyhf{} 
+\setlength{\headheight}{45pt} 
+\fancyhead[R]{
+	\textcolor{gray}{\small Universidade Federal do Espírito Santo}\\ 
+	\textcolor{gray}{\small Programa Institucional de Iniciação Científica} \\
+	\textcolor{gray}{\small Relatório Parcial de Pesquisa}\\
+	\textcolor{red}{\small Área do Conhecimento (CNPq)}
+}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
 
-%%%%%%%%%%%%% Tabelas e Quadros
-\captionsetup[table]{name=Tabela} %Altera o nome de Tabela para Quadro.
 
-
-%%%%%%%%%%%%% Apelidos para bibliografias
+%%%%%%%%%%%%% Apelidos usuais para algumas revistas
 \newcommand{\mnras}{Mon. Not. R. Astron. Soc.}
 \newcommand{\aap}{Astronomy $\&$ Astrophysics}
 \newcommand{\apjs}{ApJS}
@@ -78,56 +83,38 @@
 \newcommand{\nat}{Nature}
 \newcommand{\natastron}{Nature Astronomy}
 
-%%%%%%%%%%%%%%%% Espaçamento entre linhas
-\renewcommand{\baselinestretch}{1.5} % Espaçamento de 1.5 entre linhas
-\setlength{\parskip}{10pt} % espaço entre parágrafos (uma linha em branco).
-
-\pagestyle{fancy}
-\fancyhf{} % clear all fields
-\setlength{\headheight}{45pt} % Avoid fancyhdr warning (adjust if needed)
-%\addtolength{\topmargin}{-50pt} % Compensate for increased header height
-\fancyhead[R]{
-	\textcolor{gray}{\small Universidade Federal do Espírito Santo}\\ 
-	\textcolor{gray}{\small Programa Institucional de Iniciação Científica} \\
-	\textcolor{gray}{\small Relatório Parcial de Pesquisa}\\
-	\textcolor{red}{\small Área do Conhecimento (CNPq)}
-}
-\rfoot{\thepage}
-\renewcommand{\headrulewidth}{0pt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%% Begin Document
 \begin{document}
 
 \begin{tabularx}{\textwidth}{|>{\columncolor[gray]{0.9}} l|X|}
-\hline
-{\bf Edital:} & \textbf{Edital Piic 20\_\_ / 20\_\_  } \\
-\hline
-{\bf Área do Conhecimento (CNPq):} &   \\
-\hline
-{\bf Subárea do Conhecimento (CNPq):} &  \\
-\hline
-{\bf Título do Projeto:}&  \\
-\hline
-{\bf Título do Subprojeto:} & \\
-\hline
-{\bf Orientador(a):} & \\
-\hline
-{\bf Estudante:} & \\
-\hline
+    \hline
+    {\bf Edital:} & \textbf{Edital Piic 20\_\_ / 20\_\_  } \\
+    \hline
+    {\bf Área do Conhecimento (CNPq):} &   \\
+    \hline
+    {\bf Subárea do Conhecimento (CNPq):} &  \\
+    \hline
+    {\bf Título do Projeto:}&  \\
+    \hline
+    {\bf Título do Subprojeto:} & \\
+    \hline
+    {\bf Orientador(a):} & \\
+    \hline
+    {\bf Estudante:} & \\
+    \hline
 \end{tabularx}
 
 \begin{tabularx}{\textwidth}{|>{\columncolor[gray]{0.9}}  p{0.418\textwidth}|X|}
-\hline
-{\bf Estudante apresenta alguma  necessidade de acessibilidade?} & ( )Sim / ( ) Não \\
-\hline
-{\bf Se sim, informar o recurso ou  suporte de acessibilidade que necessita.} & \\
-\hline
+    \hline
+    {\bf Estudante apresenta alguma  necessidade de acessibilidade?} & ( )Sim / ( ) Não \\
+    \hline
+    {\bf Se sim, informar o recurso ou  suporte de acessibilidade que necessita.} & \\
+    \hline
 \end{tabularx}
 
 \vspace{.5cm}
-
-% Requires: \usepackage{xcolor}
 
 {\color{red}
 \noindent{\bfseries Orientações Gerais (remover na versão final)}
@@ -163,7 +150,6 @@ Nesta seção devem ser descritos, de maneira sucinta, \textbf{em até 30 linhas
 \section{Resultados e Discussão}
 Esta seção deve explicitar, \textbf{em até 30 linhas}, os principais resultados obtidos no decorrer da pesquisa executada pelo discente no primeiro semestre de vinculação ao Piic/Ufes. Em todo o relatório, ilustrações (figuras, gráficos, fotos, fluxogramas, quadros e etc.) e tabelas podem também ser incluídas e devem ser utilizadas a fim de de organizar os dados, realizar comparações, sintetizar informações e dar suporte às análises. Deve-se destacar que tais ilustrações ou tabelas não são computadas como linhas do texto. As ilustrações e tabelas devem ser inseridas imediatamente após o trecho ao qual fazem referência. Estes elementos devem estar centralizados na página. Na parte inferior, deve constar a indicação da fonte consultada (elemento obrigatório, mesmo que seja “produção do próprio autor”), legenda, notas e/ou outras informações necessárias à compreensão (se houver), como mostram a Figura \ref{fig:exemplo1} e a Figura \ref{fig:exemplo2}.
 
-
 \begin{figure}[H]
     \centering
     \caption{(a) Fotografia do modelo de edificação utilizado no experimento e (b) representação esquemática do comportamento do escoamento sobre a edificação. }
@@ -171,7 +157,6 @@ Esta seção deve explicitar, \textbf{em até 30 linhas}, os principais resultad
     \subfloat[]{
         \includegraphics[width=0.48\textwidth]{Picture1.png}
     }
-    %\hfill
     \subfloat[]{
         \includegraphics[width=0.48\textwidth]{Picture2.png}
     }
@@ -190,8 +175,6 @@ Esta seção deve explicitar, \textbf{em até 30 linhas}, os principais resultad
         Notas: $^1$ Inclui biodiesel. $^2$ Inclui apenas gasolina A (automotiva). $^3$ Inclui gás de refinaria, coque de carvão mineral e carvão vegetal, dentre outros.
     }
 \end{figure}
-
-
 
 Para inserir números de figuras, inclua uma etiqueta (\textit{label}) dentro do ambiente de figura (\verb|\label{fig:exemplo1}|) e refira ao mesmo usando \verb|\ref{fig:exemplo1}|. Links são criados automaticamente. O uso de ``fig:'' na etiqueta da figura é prática comum e recomendada, mas qualquer nome de etiqueta funciona.
 
@@ -284,8 +267,6 @@ ou
 
 Em quaisquer dos casos, a pontuação segue sendo usada usando as regras normais do português: as equações fazem parte do texto. Recomenda-se que todas as equações destacadas sejam numeradas, mesmo as não citadas no texto. Essa simples prática facilita a discussão posterior do texto. Ao citar equações, diferentemente de figuras e tabelas, sempre usar parênteses em torno dos números. Isso pode ser feito, por exemplo, via \verb|(\ref{eq:Einstein})| ou \verb|\eqref{eq:Einstein}|. Acima, a eq.~\eqref{eq:Einstein} trata das equações de campo de Einstein e a eq.~\eqref{eq:Schroedinger} é a equação de Schroedinger na notação de \textit{bra} e \textit{ket}.
 
-
-\noindent
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Atividades Realizadas e Metas Futuras}
 
@@ -325,16 +306,15 @@ d) Wwwww ww www wwww www &  &  &  &  &  &  &  &  &  &  &  &  \\
 Toda a seção deve ter, no máximo, 20 linhas, sem contar com o quadro que contém o cronograma de atividades.
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Sobre as referências}
 Esta seção deve descrever as fontes consultadas durante esta primeira etapa de desenvolvimento do Subprojeto de Iniciação Científica, seguindo a norma técnica pertinente, a saber a NBR 6023:2025. Deve conter apenas as obras citadas no texto, ou seja, “não liste se não citar” e “não cite se não listar”. A lista das referências bibliográficas deve estar em ordem alfabética. A \href{https://biblioteca.ufes.br/normalizacao}{Biblioteca Central da Ufes (BC-Ufes)} orienta a aplicação da nova ABNT NBR 6023:2025.
 
-Ao usar \LaTeX, sugere-se o uso de um arquivo `bib' que contenha todas as referências necessárias (pode conter muitas outras mais, mas só as citadas irão aparecer no PDF final). Assim no arquivo tex basta chamar cada referência usando \verb|\cite{etiquitaDaReferencia}| ou \verb|\citep{etiquitaDaReferencia}|. Exemplo: \citet{Weinberg:2009wa} tratou de inflação no contexto de teorias de campos assintoticamente seguras.  Há várias formas de estimar a densidade de matéria escura na vizinhança do Sol \citep{Salucci:2010qr}.
+%Ao usar \LaTeX, sugere-se o uso de um arquivo `bib' que contenha todas as referências necessárias (pode conter muitas outras mais, mas só as citadas irão aparecer no PDF final). Assim no arquivo tex basta chamar cada referência usando \verb|\cite{etiquitaDaReferencia}| ou \verb|\citep{etiquitaDaReferencia}|. Exemplo: \citet{Weinberg:2009wa} tratou de inflação no contexto de teorias de campos assintoticamente seguras.  Há várias formas de estimar a densidade de matéria escura na vizinhança do Sol \citep{Salucci:2010qr}.
 
 
-\bibliographystyle{hapalike2-NOand}
-\bibliography{referencias}{}
+%\bibliographystyle{hapalike2-NOand}
+%\bibliography{referencias}{}
 
 
 
